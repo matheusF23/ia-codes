@@ -27,6 +27,10 @@ def acoes(estado):
     margemEsquerda = estado[1:4]
     estadosImpossiveis = [[1, 2, 3], [1, 0, 3], [0, 2, 3]]
 
+    if(margemDireita in estadosImpossiveis and estado[4] == 0):
+        return ['estadoImpossivel']
+    elif(margemEsquerda in estadosImpossiveis and estado[0] == 0):
+        return ['estadoImpossivel']
     if (margemDireita in estadosImpossiveis and estado[4] == 1):
         return ['escolheItem', 'atravessa']
     elif(margemEsquerda in estadosImpossiveis and estado[0] == 1):
@@ -45,27 +49,29 @@ def atravessa(estado, inicioItem, destinoItem):
     return novoEstado
 
 
-def no_filho(no, item, explorado):
-    estadosImpossiveis = [[1, 2, 3], [1, 0, 3], [0, 2, 3]]
-
+def nos_filho(no, item):
+    """Tetorna os possiveis filhos de um nó"""
     estado = no[0][-1].copy()
+    filhos = []
     if (item == 0):
         estado[0], estado[4] = estado[4], estado[0]
-        return estado
+        return [estado]
     if (estado[4] == 1):
         for i in range(3):
             posicaoItem = i + 5
             if (estado[posicaoItem] == i + 1):
                 novoEstado = atravessa(estado, posicaoItem, i + 1)
-                if (novoEstado[5:] not in estadosImpossiveis and novoEstado not in explorado):
-                    return novoEstado
+                # if (novoEstado[5:] not in estadosImpossiveis):
+                filhos.append(novoEstado)
+        return filhos
     if (estado[0] == 1):
         for i in range(3):
             posicaoItem = i + 1
             if (estado[posicaoItem] == i + 1):
                 novoEstado = atravessa(estado, posicaoItem, i + 5)
-                if (novoEstado[1:4] not in estadosImpossiveis and novoEstado not in explorado):
-                    return novoEstado
+                # if (novoEstado[1:4] not in estadosImpossiveis):
+                filhos.append(novoEstado)
+        return filhos
 
 
 def ajuda_fazendeiro(estadoInicial):
@@ -87,17 +93,20 @@ def ajuda_fazendeiro(estadoInicial):
 
         item = 0    # Para decidir se e qual item escolher
         for acao in acoes(no[0][-1]):
-            if (acao == 'escolheItem'):
+            if(acao == 'estadoImpossivel'):
+                break
+            elif (acao == 'escolheItem'):
                 item = 1
             elif (acao == 'atravessa'):
-                filho = no_filho(no, item, explorado)
-                if (not filho in explorado and not testa_borda(filho, borda)):
-                    if teste_objetivo(filho):
-                        no[0].append(filho)
-                        no[1] += 1
-                        acheiSolucao = True
-                        break
-                    borda.append([no[0] + [filho], no[1] + 1])
+                filhos = nos_filho(no, item)
+                for filho in filhos:
+                    if (not filho in explorado and not testa_borda(filho, borda)):
+                        if teste_objetivo(filho):
+                            no[0].append(filho)
+                            no[1] += 1
+                            acheiSolucao = True
+                            break
+                        borda.append([no[0] + [filho], no[1] + 1])
 
     if (acheiSolucao is True):
         return no
@@ -129,3 +138,5 @@ if resposta:
             '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n',
             f'\tmargem direita: {v[4:]}\n'
         )
+else:
+    print("Não consegui resolver!")
