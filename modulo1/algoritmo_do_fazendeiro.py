@@ -22,7 +22,6 @@ def teste_objetivo(estado):
 
 def acoes(estado):
     """Recebe um estado e retorna as ações possiveis"""
-    # [1,0,0,3,0,1,2,0]
     margemDireita = estado[5:]
     margemEsquerda = estado[1:4]
     estadosImpossiveis = [[1, 2, 3], [1, 0, 3], [0, 2, 3]]
@@ -42,6 +41,7 @@ def acoes(estado):
 
 
 def atravessa(estado, inicioItem, destinoItem):
+    """Executa a ação de atravessar"""
     novoEstado = estado.copy()
     novoEstado[0], novoEstado[4] = novoEstado[4], novoEstado[0]
     novoEstado[destinoItem], novoEstado[inicioItem] = novoEstado[inicioItem], novoEstado[destinoItem]
@@ -61,7 +61,6 @@ def nos_filho(no, item):
             posicaoItem = i + 5
             if (estado[posicaoItem] == i + 1):
                 novoEstado = atravessa(estado, posicaoItem, i + 1)
-                # if (novoEstado[5:] not in estadosImpossiveis):
                 filhos.append(novoEstado)
         return filhos
     if (estado[0] == 1):
@@ -69,7 +68,6 @@ def nos_filho(no, item):
             posicaoItem = i + 1
             if (estado[posicaoItem] == i + 1):
                 novoEstado = atravessa(estado, posicaoItem, i + 5)
-                # if (novoEstado[1:4] not in estadosImpossiveis):
                 filhos.append(novoEstado)
         return filhos
 
@@ -113,7 +111,6 @@ def ajuda_fazendeiro(estadoInicial):
     return False
 
 
-# estadoInicial = [['0000 1123'], 0]  # Estado inicial com custo do caminho
 estadoInicial = [[[0, 0, 0, 0, 1, 1, 2, 3]], 0]
 
 resposta = ajuda_fazendeiro(estadoInicial)
