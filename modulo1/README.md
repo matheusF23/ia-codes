@@ -19,8 +19,10 @@ Considere o seguinte cenário: "um fazendeiro está levando uma raposa, uma gali
 
   - Os quatro primeiros elementos da lista (estadoInicial[:4]) referenciam a margem esquerda e, os quatro últimos (estadoInicial[4:]), a margem direita. 
   - O primeiro item de cada margem (estadoInicial[0] e estadoInicial[4]) simboliza o fazendeiro Quando ele é 0, significa que o fazendeiro não se encontra nessa marge.
+  - As outras posições da lista só podem receber um valor cada uma, ou seja, os itens não podem mudar de lugar na marge. Sendo assim, estadoInicial[1] e estadoInicial[5] só podem receber o valor específico de grão (1), estadoInicial[2] e estadoInicial[6] só podem receber o valor específico de raposa (2), estadoInicial[3] e estadoInicial[7] só podem receber o valor específico de galinha (3).
+  - O 0 siginifica que nenhum item se encontra naquela margem.
 
-  Como exemplo, o estado em que o fazendeiro atravessou a galinha:
+  Como exemplo, o estado em que o fazendeiro atravessou a galinha para a margem esquerda:
 
   estado = [1,0,0,3,0,1,2,0]
 
