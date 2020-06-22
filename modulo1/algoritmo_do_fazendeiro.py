@@ -98,7 +98,7 @@ def ajuda_fazendeiro(estadoInicial):
             elif (acao == 'atravessa'):
                 filhos = nos_filho(no, item)
                 for filho in filhos:
-                    if (not filho in explorado and not testa_borda(filho, borda)):
+                    if (not filho in explorado or not testa_borda(filho, borda)):
                         if teste_objetivo(filho):
                             no[0].append(filho)
                             no[1] += 1
