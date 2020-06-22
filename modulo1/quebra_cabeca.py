@@ -29,10 +29,10 @@ def teste_objetivo(estado, estadoObjetivo):
     return estado == estadoObjetivo
 
 
-def ordena_borda(borda, novoCaminho):
+def cria_borda_ordenada(borda, novoCaminho):
     """ordena a borda em ordem crescente de custo"""
     for indice, caminho in enumerate(borda):
-        if (novoCaminho[1] < caminho[1]):
+        if (novoCaminho[1] <= caminho[1]):
             # É preciso adicionar o novo caminho no indice ao qual ele tem um
             # custo menor, para isso separamos a borda em duas e colocamos o
             # novo caminho no meio
@@ -95,7 +95,7 @@ def no_filho(estado, acao):
                     linha1[indice], linha1[indice -
                                            1] = linha1[indice - 1], linha1[indice]
                     return filho
-                else:
+                elif(acao == 'direita'):
                     linha1[indice], linha1[indice +
                                            1] = linha1[indice + 1], linha1[indice]
                     return filho
@@ -112,12 +112,12 @@ def no_filho(estado, acao):
                     linha2[indice], linha2[indice -
                                            1] = linha2[indice - 1], linha2[indice]
                     return filho
-                else:
+                elif(acao == 'direita'):
                     linha2[indice], linha2[indice +
                                            1] = linha2[indice + 1], linha2[indice]
                     return filho
     elif (0 in linha3):
-        for indice, valor in enumerate(linha2):
+        for indice, valor in enumerate(linha3):
             if(valor == 0):
                 if(acao == 'cima'):
                     linha3[indice], linha2[indice] = linha2[indice], linha3[indice]
@@ -126,12 +126,10 @@ def no_filho(estado, acao):
                     linha3[indice], linha3[indice -
                                            1] = linha3[indice - 1], linha3[indice]
                     return filho
-                else:
+                elif(acao == 'direita'):
                     linha3[indice], linha3[indice +
                                            1] = linha3[indice + 1], linha3[indice]
                     return filho
-
-    return filho
 
 
 def testa_custo(filho, borda, novoCaminho):
@@ -140,24 +138,8 @@ def testa_custo(filho, borda, novoCaminho):
     for i in range(len(borda)):
         if filho == borda[i][0][-1] and novoCaminho[1] < borda[i][1]:
             borda[i] = novoCaminho
-            borda[i][1] = custo
+            borda[i][1] = novoCaminho[1]
             break
-
-    # menorCustoNaBorda = borda[0][1]    # Pega o custo do primeiro caminho
-    # maioresCustos = []
-    # indiceMenorCustoNaBorda = 0
-    # for indice, elemento in enumerate(borda):
-    #     if (filho == elemento[0][-1] and custo < elemento[1]):
-    #         if (maioresCustos is not [] and elemento[1] < min(maioresCustos)):
-    #             menorCustoNaBorda = elemento[1]
-    #             maioresCustos.append(menorCustoNaBorda)
-    #             indiceMenorCustoNaBorda = indice
-    #         else:
-    #             menorCustoNaBorda = elemento[1]
-    #             maioresCustos.append(elemento[1])
-    #             indiceMenorCustoNaBorda = indice
-    # borda[indice][0][-1] = filho
-    # borda[indice][1] = custo
 
 
 def quebra_cabeca(estadoInicial, estadoObjetivo):
@@ -168,20 +150,10 @@ def quebra_cabeca(estadoInicial, estadoObjetivo):
 
     acheiSolucao = False
 
-    time = 0
     while not acheiSolucao:
-        time += 1
-        # print(time)
         if (len(borda) == 0):
             break
 
-        # escolhe o nó de menor custo na borda
-        # menorValor = borda[0][1]    # Pega o custo do primeiro caminho
-        # indiceMenorValor = 0
-        # for indice, elemento in enumerate(borda):
-        #     if(elemento[1] < menorValor):
-        #         menorValor = elemento[1]
-        #         indiceMenorValor = indice
         no = borda.pop(0)   # Escolhe o nó com menor custo
 
         if (teste_objetivo(no[0][-1], estadoObjetivo)):
@@ -193,13 +165,8 @@ def quebra_cabeca(estadoInicial, estadoObjetivo):
             filho = no_filho(no[0][-1], acao)
             custo = no[1] + 1 + heuristica(filho)
             novoCaminho = [no[0] + [filho], custo]
-            if (not testa_borda(filho, borda) or not filho in explorado):
-                if teste_objetivo(filho, estadoObjetivo):
-                    no[0].append(filho)
-                    no[1] += 1
-                    acheiSolucao = True
-                    break
-                borda = ordena_borda(borda, novoCaminho)
+            if (not testa_borda(filho, borda) or filho not in explorado):
+                borda = cria_borda_ordenada(borda, novoCaminho)
             else:
                 testa_custo(filho, borda, novoCaminho)
     if (acheiSolucao):
