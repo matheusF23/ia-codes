@@ -89,7 +89,7 @@ def ajuda_fazendeiro(estadoInicial):
         no = borda.pop(0)
         explorado.append(no[0][-1])
 
-        item = 0    # Para decidir se e qual item escolher
+        item = 0    # Para decidir se vai escolher um item
         for acao in acoes(no[0][-1]):
             if(acao == 'estadoImpossivel'):
                 break
