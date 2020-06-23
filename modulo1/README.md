@@ -36,7 +36,10 @@ Considere o seguinte cenário: "um fazendeiro está levando uma raposa, uma gali
 
   Colocamos a ação de escolher item, para os casos em que o fazendeiro precisa atravessar o rio sem levar nenhum item. Ele precisa decidir se vai levar um item ou não.
 
-  O algorítmo do fazendeiro encontra-se no arquivo [algoritmo_do_fazendeiro.py](algoritmo_do_fazendeiro.py)
+  O algorítmo do fazendeiro encontra-se no arquivo [algoritmo_do_fazendeiro.py](algoritmo_do_fazendeiro.py). Para utilizar basta digitar no terminal: 
+  ```terminal
+  $ python algoritmo_do_fazendeiro.py
+  ```
 
 
 ## 2. O problema do quebra-cabeça de 8 peças
@@ -67,4 +70,7 @@ Consiste em um tabuleiro 3x3 com oito peças numeradas e um quadrado vazio. Uma 
 ]
   - **Custo do caminho:** 1 para cada passo, logo o custo de caminho é o número de passos do caminho.
 
-  O algoritmo do quebra-cabeça de 8 peças encontra-se no arquivo [quebra_cabeca.py](quebra_cabeca.py)
+  O algoritmo do quebra-cabeça de 8 peças encontra-se no arquivo [quebra_cabeca.py](quebra_cabeca.py). Para utilizar basta digitar no terminal: 
+  ```terminal
+  $ python quebra_cabeca.py
+  ```
