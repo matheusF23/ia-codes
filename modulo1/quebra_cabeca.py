@@ -163,16 +163,13 @@ def quebra_cabeca(estadoInicial, estadoObjetivo):
 
         for acao in acoes(no[0][-1]):
             filho = no_filho(no[0][-1], acao)
-            custo = no[1] + 1 + heuristica(filho)
+            custo = len(no[0]) + heuristica(filho)
             novoCaminho = [no[0] + [filho], custo]
             if (not testa_borda(filho, borda) or filho not in explorado):
                 borda = cria_borda_ordenada(borda, novoCaminho)
             else:
                 testa_custo(filho, borda, novoCaminho)
-    if (acheiSolucao):
-        return no
-    else:
-        return False
+    return False
 
 
 estadoInicial = [[
@@ -189,4 +186,13 @@ estadoObjetivo = [
     [6, 7, 8]
 ]
 
-print(quebra_cabeca(estadoInicial, estadoObjetivo))
+resultado = quebra_cabeca(estadoInicial, estadoObjetivo)
+
+if (resultado):
+    print(f'Custo do caminho: {resultado[1]}')
+    for estado in resultado[0]:
+        for linha in estado:
+            print(linha)
+        print()
+else:
+    print('Não consegui achar solução')
