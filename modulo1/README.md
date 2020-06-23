@@ -37,3 +37,32 @@ Considere o seguinte cenário: "um fazendeiro está levando uma raposa, uma gali
   Colocamos a ação de escolher item, para os casos em que o fazendeiro precisa atravessar o rio sem levar nenhum item. Ele precisa decidir se vai levar um item ou não.
 
   O algorítmo do fazendeiro encontra-se no arquivo [algoritmo_do_fazendeiro.py](algoritmo_do_fazendeiro.py)
+
+
+## 2. O problema do quebra-cabeça de 8 peças
+
+Consiste em um tabuleiro 3x3 com oito peças numeradas e um quadrado vazio. Uma peça ao lado do quadrado vazio pode deslizar para esse quadrado. O objetivo é alcançar um estado objetivo especificado.
+
+* **Formulação do Problema**
+
+  Usamos o algoritmo de busca A*, onde sabemos que é uma busca baseada na melhor escolha em que avalia os nós através da combinação de g(n), o custo para alcançar o nó, e h(n), o custo para ir do nó ao objetivo. 
+  A heurística é a forma mais comum de como o conhecimento adicional do problema é transmitido ao algoritmo de busca, dito isso, escolhemos a heurística de distância Manhattan, que consiste na soma das distâncias das peças de suas posições até a posição que deveriam estar.
+  Com base nisso, o algoritmo vai verificar em relação ao estado atual, para onde ele pode mover o 0 e com base no custo do caminho somado a heuristica de cada peça, considerar a menor quantidade de passos possíveis, sempre checando se na borda possui um mesmo filho com custo maior, caso verdadeiro ocorrerá a substituição do mesmo.
+
+  Feita as considerações, temos:
+
+  - **Estado inicial:** [
+        [7, 2, 4],
+        [5, 0, 6],
+        [8, 3, 1]
+]
+  - **Ações possíveis:** Esquerda, direita, cima e baixo;
+  - **Modelo de transição:** Dado um estado e uma ação, ele devolve o estado resultante. Por exemplo, se a ação do estado inicial acima for direita, ocorrerá a troca de posição entre 0 e 6.
+  - **Teste de objetivo:** Verificar se o estado corresponde a [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+]
+  - **Custo do caminho:** 1 para cada passo, logo o custo de caminho é o número de passos do caminho.
+
+  O algoritmo do quebra-cabeça de 8 peças encontra-se no arquivo [quebra_cabeca.py](quebra_cabeca.py)
