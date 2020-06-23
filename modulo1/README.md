@@ -41,7 +41,9 @@ Considere o seguinte cenário: "um fazendeiro está levando uma raposa, uma gali
 
 ## 2. O problema do quebra-cabeça de 8 peças
 
-Consiste em um tabuleiro 3x3 com oito peças numeradas e um quadrado vazio. Uma peça ao lado do quadrado vazio pode deslizar para esse quadrado. O objetivo é alcançar um estado objetivo especificado.
+Consiste em um tabuleiro 3x3 com oito peças numeradas e um quadrado vazio. Uma peça ao lado do quadrado vazio pode deslizar para esse quadrado. O objetivo é alcançar um estado objetivo especificado. A imagem abaixo facilita o entendimento do problema.
+
+![quebra cabeca](img_quebra_cabeca.png)
 
 * **Formulação do Problema**
 
