@@ -75,4 +75,4 @@ Consiste em um tabuleiro 3x3 com oito peças numeradas e um quadrado vazio. Uma 
   $ python quebra_cabeca.py
   ```
 
-O algoritmo para a distância de Manhattan foi baseado [nessa discussão do stack overflow]()
+O algoritmo para a distância de Manhattan foi baseado [nessa discussão do stack overflow](https://stackoverflow.com/questions/16318757/calculating-manhattan-distance-in-python-in-an-8-puzzle-game)
