@@ -1,4 +1,7 @@
 # Inteligência artificial
+
+Participantes: [Matheus Figueiredo Silva](https://github.com/matheusF23) e [Gilson Santos](https://github.com/gilsonsantos03)
+
 ## 1. O problema do fazendeiro
 
 Considere o seguinte cenário: "um fazendeiro está levando uma raposa, uma galinha e um saco de grãos para casa. Para chegar lá, ele precisa atravessar um rio de barco. Só que ele pode levar consigo apenas um item de cada vez. Se a raposa for deixada sozinha com a galinha, ela comerá a galinha. Se a galinha for deixada sozinha com os grãos, ela comerá os grãos. Como o fazendeiro poderá atravessar o rio mantendo todo seu suprimento intacto?". Esta situação pode ser modelada como um problema de busca. Pede-se:
