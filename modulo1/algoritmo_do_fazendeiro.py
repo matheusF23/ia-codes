@@ -30,7 +30,7 @@ def acoes(estado):
         return ['estadoImpossivel']
     elif(margemEsquerda in estadosImpossiveis and estado[0] == 0):
         return ['estadoImpossivel']
-    if (margemDireita in estadosImpossiveis and estado[4] == 1):
+    elif (margemDireita in estadosImpossiveis and estado[4] == 1):
         return ['escolheItem', 'atravessa']
     elif(margemEsquerda in estadosImpossiveis and estado[0] == 1):
         return ['escolheItem', 'atravessa']
@@ -54,7 +54,7 @@ def nos_filho(no, item):
     estado = no[0][-1].copy()
     filhos = []
     if (item == 0):
-        estado[0], estado[4] = estado[4], estado[0]
+        estado[0], estado[4] = estado[4], estado[0] # Atravessa só o fazendeiro
         return [estado]
     if (estado[4] == 1):
         for i in range(3):

@@ -7,8 +7,8 @@ def heuristica(estado):
                 if(valor == n):
                     linhaAtual = i
                     colunaAtual = col
-                    linhaCorreta = int(n / 3)
-                    colunaCorreta = n % 3
+                    linhaCorreta = int(valor / 3)
+                    colunaCorreta = valor % 3
                     manhattan += abs(linhaAtual - linhaCorreta) + \
                         abs(colunaAtual - colunaCorreta)
     return manhattan
@@ -138,7 +138,6 @@ def testa_custo(filho, borda, novoCaminho):
     for i in range(len(borda)):
         if filho == borda[i][0][-1] and novoCaminho[1] < borda[i][1]:
             borda[i] = novoCaminho
-            borda[i][1] = novoCaminho[1]
             break
 
 
@@ -148,9 +147,7 @@ def quebra_cabeca(estadoInicial, estadoObjetivo):
     borda = [no]
     explorado = []
 
-    acheiSolucao = False
-
-    while not acheiSolucao:
+    while True:
         if (len(borda) == 0):
             break
 
@@ -169,7 +166,6 @@ def quebra_cabeca(estadoInicial, estadoObjetivo):
                 borda = cria_borda_ordenada(borda, novoCaminho)
             else:
                 testa_custo(filho, borda, novoCaminho)
-    return False
 
 
 estadoInicial = [[
