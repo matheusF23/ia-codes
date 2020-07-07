@@ -7,6 +7,7 @@ x: 0 ... 15
 
 import random
 import math
+from matplotlib import pyplot as plt
 
 
 def convert_to_decimal(chromosome):
@@ -18,6 +19,7 @@ def convert_to_decimal(chromosome):
             decimal = decimal + 2**i
 
     return decimal
+
 
 def fitness_function(x):
     # return 15*x - x**2
@@ -69,15 +71,20 @@ def mutation(children, mutation_rate):
 def genetic_algorithm(population_size, crossing_rate=0.7, mutation_rate=0.01, generations=100):
     generation = 0
     population = create_population(population_size)
+    mean_list = []
+    generation_list = [generation]
     while(generation < generations):
         fitness = [fitness_function(convert_to_decimal(chrom))
                    for chrom in population]
 
         mean = int(sum(fitness) / len(fitness))
+        mean_list.append(mean)
         error = max(fitness) - mean
         if(error < 2):
             for i, v in enumerate(fitness):
                 if (v == max(fitness)):
+                    plt.plot(generation_list, mean_list)
+                    plt.show()
                     return convert_to_decimal(population[i]), generation
 
         population_with_weight = [(population[i], int(
@@ -99,9 +106,12 @@ def genetic_algorithm(population_size, crossing_rate=0.7, mutation_rate=0.01, ge
         mutation(children, mutation_rate)
         population = children[:]
         generation += 1
+        generation_list.append(generation)
 
     for i, v in enumerate(fitness):
         if (v == max(fitness)):
+            plt.plot(generation_list, mean_list)
+            plt.show()
             return convert_to_decimal(population[i]), generation
 
 
