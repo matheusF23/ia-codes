@@ -80,10 +80,6 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
         mean_list.append(mean)
         max_list.append(max(fitness))
 
-        error = max(fitness) - mean
-        # if(error < 0.00001):
-        #     break
-
         # É preciso normalizar os valores em fitness entre 0 e 1, para atribuir
         # pesos aos cromossomos na roleta.   .
         fitness_norm = []
@@ -101,7 +97,6 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
         parents = []
         while(len(parents) != len(population) // 2):
             father = random.choice(roulette)
-            # mother = random.choice(roulette)
             while True:
                 mother = random.choice(roulette)
                 if(mother != father):
@@ -109,6 +104,7 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
             parents.append((father, mother))
 
         children = crossing_over(parents, crossing_rate)
+
         # Adicionar o melhor cromossomo no lugar do pior
         fitness_child = []
         for chromosome in children:
@@ -129,8 +125,9 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
 
 def plot_result(x, y_mean, y_max):
     plt.figure(num="Aptidão média e melhor aptidão da população")
-    plt.plot(x, y_mean, x, y_max)
-    plt.title('Aptidão média (azul) e melhor aptidão (laranja) da população')
+    plt.plot(x, y_mean, x, y_max, '--')
+    plt.title('Aptidão média e melhor aptidão da população')
+    plt.legend(('Média', 'Melhor'), loc='best')
     plt.ylabel('Aptidão')
     plt.xlabel('Geração')
 
