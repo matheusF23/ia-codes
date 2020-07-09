@@ -20,7 +20,7 @@ O algoritmo pode ser visualizado [aqui](maximizer.py)
 
 ## Utilização
 
-Para utilizar, ative o ambiente virtual para instalar as dependências em [requirements.txt](requirements.txt):
+Para utilizar, instale as dependências em [requirements.txt](requirements.txt) (use um ambiente virtual):
 
 ```
 $ pip install requirements.txt
