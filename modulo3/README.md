@@ -40,30 +40,39 @@ $ python maximizer.py
 
 A taxa de cruzamento foi mantida em 0.8 e a taxa de mutação em 0.01.
 
-* Ponto A:
+* **Ponto A:**
   - tamanho da população: 6
   - quantidade de gerações: 200
 
   **Resultado**: máximo local
 
-* Ponto B:
+  ![PointA](static/PointA.png)
+
+* **Ponto B:**
   - tamanho da população: 60
   - quantidade de gerações: 100
 
   **Resultado**: máximo local
 
-* Ponto C:
+  ![PointB](static/PointB.png)
+
+* **Ponto C:**
   - tamanho da população: 120
   - quantidade de gerações: 100
 
   **Resultado**: máximo local
 
-* Ponto D:
+  ![PointC](static/PointC.png)
+
+* **Ponto D:**
   - tamanho da população: 240
   - quantidade de gerações: 50
 
   **Resultado**: máximo global
 
+  ![PointD](static/PointD.png)
+
+### Plotagem da função com os pontos
 
 ![Resultados](static/results.png)
 
