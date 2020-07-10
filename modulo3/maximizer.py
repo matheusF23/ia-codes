@@ -53,10 +53,10 @@ def crossing_over(parents, crossing_rate):
 
 def mutation(children, mutation_rate):
     for child in children:
-        rate = random.random()
-        if (rate < mutation_rate):
-            position = random.randint(0, len(child) - 1)
-            child[position] = 0**child[position]
+        for gene in child:
+            rate = random.random()
+            if (rate < mutation_rate):
+                child[gene] = 0**child[gene]
 
 
 def maximizer(population_size, crossing_rate, mutation_rate, generations):
@@ -104,6 +104,7 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
             parents.append((father, mother))
 
         children = crossing_over(parents, crossing_rate)
+        mutation(children, mutation_rate)
 
         # Adicionar o melhor cromossomo no lugar do pior
         fitness_child = []
@@ -111,10 +112,9 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
             x1 = convert_to_float(chromosome[:32])
             x2 = convert_to_float(chromosome[32:])
             fitness_child.append(fitness_function(x1, x2))
-        if(min(fitness_child) < max(fitness)):
-            children[fitness_child.index(min(fitness_child))] = best_chromosome
+        # if(min(fitness_child) < max(fitness)):
+        children[fitness_child.index(min(fitness_child))] = best_chromosome
 
-        mutation(children, mutation_rate)
         population = children[:]
         generation += 1
 
