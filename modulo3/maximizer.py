@@ -112,8 +112,8 @@ def maximizer(population_size, crossing_rate, mutation_rate, generations):
             x1 = convert_to_float(chromosome[:32])
             x2 = convert_to_float(chromosome[32:])
             fitness_child.append(fitness_function(x1, x2))
-        # if(min(fitness_child) < max(fitness)):
-        children[fitness_child.index(min(fitness_child))] = best_chromosome
+        if(min(fitness_child) < max(fitness)):
+            children[fitness_child.index(min(fitness_child))] = best_chromosome
 
         population = children[:]
         generation += 1
