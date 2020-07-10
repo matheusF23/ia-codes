@@ -53,7 +53,7 @@ def crossing_over(parents, crossing_rate):
 
 def mutation(children, mutation_rate):
     for child in children:
-        for gene in child:
+        for gene in range(len(child)):
             rate = random.random()
             if (rate < mutation_rate):
                 child[gene] = 0**child[gene]
